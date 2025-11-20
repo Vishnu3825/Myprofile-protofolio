@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mukkara Vishnu Sekhar Reddy — Modern Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#071427;
+      --card:#0d1b2a;
+      --muted:#93a6bf;
+      --accent:#ff6b57;
+      --glass:rgba(255,255,255,0.04);
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#eaf2ff;background:linear-gradient(180deg,#061226 0%,#071427 100%);}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+
+    /* NAV */
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:10px 6px}
+    .brand{font-weight:700;letter-spacing:0.3px}
+    .menu{display:flex;gap:18px}
+    .menu a{color:var(--muted);font-weight:600}
+    .cta{background:var(--accent);color:#081018;padding:8px 14px;border-radius:8px;font-weight:700}
+
+    /* HERO */
+    .hero{
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      gap: 28px;
+      align-items: center;
+      min-height: 100vh; /* full-screen */
+      padding: 40px 0;
+    }
+    @media(max-width:980px){.hero{grid-template-columns:1fr; padding: 20px;}}
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-left h1{font-size:44px;margin:0;line-height:1}
+    .hero-left h2{font-size:20px;margin:10px 0;color:var(--muted);font-weight:500}
+    .hero-left p{color:var(--muted);max-width:620px}
+    .hero-actions{margin-top:18px;display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:10px;font-weight:700;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+    .btn.primary{background:var(--accent);color:#081018}
+    .btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.06)}
+
+    /* Portrait & Glow */
+    .hero-right{display:flex;align-items:center;justify-content:center;position:relative;margin-top:20px}
+    .portrait-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: conic-gradient(
+        from 0deg, 
+        rgba(255,107,87,0.5),
+        rgba(255,255,87,0.5),
+        rgba(87,255,255,0.5),
+        rgba(255,107,87,0.5)
+      );
+      animation: spin 8s linear infinite, hueRotate 12s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes hueRotate {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    .portrait {
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,107,87,0.18), transparent 30%), 
+                  url('author.png') center/cover no-repeat, 
+                  linear-gradient(180deg,#0b2234,#071427);
+      box-shadow: 0 18px 60px rgba(7,20,40,0.6);
+      border: 8px solid rgba(255,107,87,0.08);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* skill bar */
+    .skills{display:flex;gap:14px;margin-top:20px;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02);overflow:auto}
+    .skill{min-width:120px;padding:10px 14px;border-radius:8px;background:transparent;color:var(--muted);text-align:center}
+
+    /* ABOUT */
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;align-items:center}
+    @media(max-width:800px){.about{grid-template-columns:1fr}}
+    .about-left{display:flex;gap:18px;align-items:flex-start}
+    .services{display:flex;flex-direction:column;gap:18px}
+    .service{display:flex;gap:12px;align-items:center}
+    .marker{width:6px;height:6px;background:var(--accent);border-radius:50%}
+    .stats{display:flex;gap:22px;justify-content:flex-start}
+    .stat{padding:12px}
+    .stat .num{font-size:28px;font-weight:800;color:var(--accent)}
+    .about-right p{color:var(--muted);line-height:1.6}
+
+    /* Projects */
+    .projects{margin-top:64px}
+    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    @media(max-width:980px){.project-grid{grid-template-columns:1fr}}
+    .proj{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .proj img{width:100%;border-radius:10px}
+    .proj h4{margin:10px 0 6px}
+    .proj p{color:var(--muted);font-size:14px}
+
+    /* Contact & footer */
+    .contact{margin-top:56px;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+    @media(max-width:800px){.contact{flex-direction:column;gap:12px;text-align:center}}
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Resume Section */
+    #resumeSection{display:none;margin-top:40px;text-align:center;}
+    #resumeSection iframe{border:1px solid rgba(255,255,255,0.1); border-radius:12px; width:80%; height:600px;}
+
+    /* small utilities */
+    .hide-mobile{display:inline}
+    @media(max-width:520px){.hide-mobile{display:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <div class="brand">Mukkara Vishnu Sekhar Reddy</div>
+      <div style="display:flex;gap:18px;align-items:center">
+        <div class="menu hide-mobile">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="cta" href="#contact">Hire Me</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-left">
+        <div style="display:flex;align-items:center;gap:12px"><h1 style="margin:0">Hello<span style="color:var(--accent)">.</span></h1></div>
+        <h2 style="margin-top:8px">I'm <strong style="font-weight:800">Mukkara Vishnu Sekhar Reddy</strong></h2>
+        <p style="margin-top:14px" class="lead">I’m a passionate Frontend and Full Stack Developer with a strong foundation in HTML, CSS, JavaScript, Native JS, and React. I specialize in building responsive, high-performance web applications that are both visually appealing and highly functional.
+         I enjoy transforming complex problems into clean, user-friendly interfaces, while also handling backend logic to create complete end-to-end solutions. My focus is on delivering scalable, maintainable code and ensuring seamless experiences across devices.</p>
+
+        <div class="hero-actions">
+          <button class="btn ghost" id="resumeBtn">My resume</button>
+        </div>
+
+        <div class="skills" aria-hidden>
+          <div class="skill">HTML5</div>
+          <div class="skill">CSS3</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">React</div>
+          <div class="skill">native</div>
+          <div class="skill">Three.js</div>
+          <div class="skill">Git</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="portrait-glow"></div>
+        <div class="portrait" role="img" aria-label="profile image"></div>
+      </div>
+    </header>
+
+    <!-- Resume section -->
+    <section id="resumeSection">
+      <h3>My Resume</h3>
+      <iframe src="full stack developer...vishnu.pdf"></iframe>
+      <br><br>
+      <a href="full stack developer...vishnu.pdf" download class="btn primary">Download Resume</a>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-left">
+        <div class="services">
+          <div class="service"><div class="marker"></div><div><strong>Website Development</strong><div style="color:var(--muted);font-size:13px">Responsive, performant websites</div></div></div>
+          <div class="service"><div class="marker"></div><div><strong>App Development</strong><div style="color:var(--muted);font-size:13px">React Native & PWAs</div></div></div>
+          <div class="service"><div class="marker"></div><div><strong>Website Hosting</strong><div style="color:var(--muted);font-size:13px">Deployment & CI/CD</div></div></div>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <h3 style="font-size:36px;margin:0 0 12px 0">About me</h3>
+        <p>My journey as a developer began with a curiosity for how websites and applications are built. I started with HTML and CSS, learning to structure and style web pages. Soon, I dove into JavaScript and Native JS, discovering the power of interactivity and dynamic web experiences.
+           As I progressed, I explored React, building modern, component-based frontends that are responsive and performant. To deliver end-to-end solutions, I expanded into Full Stack development, integrating backend logic and APIs to create complete, scalable applications.</p>
+
+    
+    </section>
+
+    <section id="projects" class="projects">
+      <h3 style="font-size:36px;margin:0 0 18px 0">Projects</h3>
+      <div class="project-grid">
+        <article class="proj">
+          <img src="project1.png" alt="project">
+          <h4>Author profile page </h4>
+          <p>A simple author profile page for beganner created only with html, css, js  <strong>Tech:</strong> React, Node (API), CSS</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div>
+        <h3 style="margin:0">Have a project? Let's talk.</h3>
+        <p style="color:var(--muted);margin:6px 0 0 0">Email: <a href="mailto:vishnusekhar3825@gmail.com">vishnusekhar3825@gmail.com</a></p>
+      </div>
+      <div><a class="btn primary" href="mailto:vishnusekhar3825@gmail.com">Contact Me</a></div>
+    </section>
+
+    <footer>© <span id="year"></span> — Mukkara Vishnu Sekhar Reddy • Built with ❤️</footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault(); 
+        const target=document.querySelector(a.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Resume button toggle
+    const resumeBtn = document.getElementById('resumeBtn');
+    const resumeSection = document.getElementById('resumeSection');
+    resumeBtn.addEventListener('click', () => {
+      if (resumeSection.style.display === 'none') {
+        resumeSection.style.display = 'block';
+        resumeSection.scrollIntoView({behavior: 'smooth'});
+      } else {
+        resumeSection.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
